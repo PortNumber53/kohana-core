@@ -76,8 +76,8 @@ class Kohana_UTF8 {
 				// Disable notices
 				$error_reporting = error_reporting(~E_NOTICE);
 
-				// iconv is expensive, so it is only used when needed
-				$var = iconv($charset, $charset.'//IGNORE', $var);
+				ini_set('mbstring.substitute_character', "none");
+				$var = mb_convert_encoding($var, $charset, $charset);
 
 				// Turn notices back on
 				error_reporting($error_reporting);
